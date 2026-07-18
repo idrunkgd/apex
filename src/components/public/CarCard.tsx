@@ -20,7 +20,7 @@ export function CarCard({ v, mode, coverUrl }: { v: Vehicle; mode: "vente" | "lo
   const dispo = v.statut === "DISPONIBLE" || v.statut === "A_LOUER" || v.statut === "A_VENDRE";
   return (
     <Link
-      href={`/vehicule/${v.slug}`}
+      href={`/vehicule/${v.slug}?mode=${mode}`}
       className="group block border border-edge rounded-md overflow-hidden bg-carbone hover:border-orange transition-all duration-300 hover:-translate-y-1.5"
     >
       <div className="relative aspect-[16/10] bg-[radial-gradient(120%_100%_at_50%_30%,#1a1c21,#0a0b0d_70%)] overflow-hidden">

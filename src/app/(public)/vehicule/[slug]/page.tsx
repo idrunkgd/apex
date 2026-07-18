@@ -5,19 +5,29 @@ import { db } from "@/lib/db";
 import { vehicles } from "@/db/schema";
 import { CarSilhouette } from "@/components/CarSilhouette";
 import { Reveal } from "@/components/Reveal";
-import { ReservationForm } from "@/components/public/ReservationForm";
-import { ContactForm } from "@/components/public/ContactForm";
+import { VehiclePanel } from "@/components/public/VehiclePanel";
 import { euro, num, km as fmtKm, parseJson, coverOf } from "@/lib/format";
 import { label, CARBURANT, CARROSSERIE, TRANSMISSION } from "@/lib/enums";
 
 export const dynamic = "force-dynamic";
 
-export default async function VehiclePage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function VehiclePage({
+  params,
+  searchParams,
+}: {
+  params: Promise<{ slug: string }>;
+  searchParams: Promise<{ mode?: string }>;
+}) {
   const { slug } = await params;
+  const sp = await searchParams;
   const v = await db.query.vehicles.findFirst({ where: eq(vehicles.slug, slug), with: { photos: true } });
   if (!v) notFound();
 
-  const isLocation = !!v.prixJour && v.destination !== "VENTE";
+  const canRent = !!v.prixJour && v.destination !== "VENTE";
+  const canSell = v.destination !== "LOCATION";
+  // Onglet ouvert par défaut selon le contexte (d'où vient l'utilisateur).
+  const initialTab: "location" | "vente" =
+    sp.mode === "location" && canRent ? "location" : sp.mode === "vente" ? "vente" : canSell ? "vente" : "location";
   const equipements = parseJson<string[]>(v.equipements, []);
   const gallery = [...(v.photos ?? [])].filter((p) => p.url).sort((a, b) => a.ordre - b.ordre);
   const heroCover = coverOf(v.photos);
@@ -47,7 +57,7 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
           </>
         )}
 
-        <Link href={isLocation ? "/location" : "/vente"} className="font-cond text-xs tracking-[2px] uppercase text-gris hover:text-orange transition-colors mb-6">
+        <Link href={initialTab === "location" ? "/location" : "/vente"} className="font-cond text-xs tracking-[2px] uppercase text-gris hover:text-orange transition-colors mb-6">
           ← Retour
         </Link>
         <div className="font-cond tracking-[5px] uppercase text-orange text-sm">{v.marque}</div>
@@ -140,31 +150,17 @@ export default async function VehiclePage({ params }: { params: Promise<{ slug: 
           )}
         </div>
 
-        {/* PANEL */}
+        {/* PANEL À ONGLETS */}
         <div className="lg:sticky lg:top-28 h-fit">
-          <div className="border border-edge rounded-lg bg-carbone p-6">
-            <div className="font-cond text-[11px] tracking-[2px] uppercase text-gris">
-              {isLocation ? "À partir de" : "Prix"}
-            </div>
-            <div className="font-display text-5xl text-orange mb-6">
-              {isLocation ? euro(v.prixJour, { perDay: true }) : euro(v.prixAffiche)}
-            </div>
-
-            {isLocation ? (
-              <ReservationForm vehicleId={v.id} prixJour={v.prixJour} caution={v.caution} />
-            ) : (
-              <div className="space-y-6">
-                <div>
-                  <div className="font-cond text-sm tracking-[2px] uppercase text-white mb-3">Demander une information</div>
-                  <ContactForm vehicleId={v.id} type="INFO" submitLabel="Demander des informations →" />
-                </div>
-                <div className="border-t border-edge pt-6">
-                  <div className="font-cond text-sm tracking-[2px] uppercase text-white mb-3">Réserver un essai</div>
-                  <ContactForm vehicleId={v.id} type="ESSAI" submitLabel="Réserver un essai →" />
-                </div>
-              </div>
-            )}
-          </div>
+          <VehiclePanel
+            vehicleId={v.id}
+            prixJour={v.prixJour}
+            prixAffiche={v.prixAffiche}
+            caution={v.caution}
+            canRent={canRent}
+            canSell={canSell}
+            initial={initialTab}
+          />
         </div>
       </section>
     </>

@@ -155,7 +155,7 @@ export default async function HomePage() {
                     {hero.prixJour ? euro(hero.prixJour, { perDay: true }) : euro(hero.prixAffiche)}
                   </div>
                 </div>
-                <Link href={`/vehicule/${hero.slug}`} className="btn-primary">Découvrir →</Link>
+                <Link href={`/vehicule/${hero.slug}?mode=${hero.prixJour ? "location" : "vente"}`} className="btn-primary">Découvrir →</Link>
               </Reveal>
             </div>
           </div>
