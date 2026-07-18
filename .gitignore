@@ -1,0 +1,16 @@
+node_modules
+.next
+/dev.db
+/dev.db-journal
+.env
+.env.local
+next-env.d.ts
+.DS_Store
+
+# Uploads (dev local)
+/public/uploads/*
+!/public/uploads/.gitkeep
+
+# Transferts internes
+_archive
+imports

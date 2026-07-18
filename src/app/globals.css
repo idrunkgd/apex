@@ -1,0 +1,74 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --font-bebas: "Bebas Neue", Impact, sans-serif;
+  --font-oswald: "Oswald", sans-serif;
+  --font-inter: "Inter", system-ui, sans-serif;
+}
+
+* { -webkit-font-smoothing: antialiased; }
+
+html { scroll-behavior: smooth; }
+body {
+  background: #050506;
+  color: #f4f5f7;
+  font-family: var(--font-inter);
+}
+::selection { background: #ff5a00; color: #000; }
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 10px; height: 10px; }
+::-webkit-scrollbar-track { background: #0c0d10; }
+::-webkit-scrollbar-thumb { background: #23262d; border-radius: 6px; }
+::-webkit-scrollbar-thumb:hover { background: #ff5a00; }
+
+/* Carbon texture backdrop */
+.grain {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; opacity: .5;
+  background:
+    repeating-linear-gradient(45deg, rgba(255,255,255,.012) 0 2px, transparent 2px 4px),
+    repeating-linear-gradient(-45deg, rgba(255,255,255,.012) 0 2px, transparent 2px 4px);
+  mix-blend-mode: screen;
+}
+
+.font-display { font-family: var(--font-bebas); letter-spacing: 1px; }
+.font-cond { font-family: var(--font-oswald); }
+
+.eyebrow {
+  font-family: var(--font-oswald); font-size: 12px; letter-spacing: 5px;
+  text-transform: uppercase; color: #ff5a00; display: inline-flex; align-items: center; gap: 12px;
+}
+.eyebrow::before { content: ""; width: 34px; height: 1px; background: #ff5a00; }
+
+/* Buttons */
+.btn-primary, .btn-ghost {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: var(--font-oswald); text-transform: uppercase; letter-spacing: 2px;
+  font-size: 14px; padding: 15px 28px; border-radius: 2px; cursor: pointer;
+  transition: all .35s cubic-bezier(.16,1,.3,1);
+}
+.btn-primary { background: #ff5a00; color: #000; font-weight: 600; }
+.btn-primary:hover { box-shadow: 0 0 34px rgba(255,90,0,.45); transform: translateY(-2px); }
+.btn-ghost { border: 1px solid rgba(255,255,255,.25); color: #fff; }
+.btn-ghost:hover { border-color: #fff; background: rgba(255,255,255,.06); }
+.btn-primary span, .btn-ghost span { transition: transform .35s; }
+.btn-primary:hover span, .btn-ghost:hover span { transform: translateX(5px); }
+
+/* Reveal animation (IntersectionObserver toggles .in) */
+.reveal { opacity: 0; transform: translateY(40px); transition: opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1); }
+.reveal.in { opacity: 1; transform: none; }
+
+.speed-underline { position: relative; }
+.speed-underline::after {
+  content: ""; position: absolute; left: 0; bottom: -2px; width: 0; height: 1px;
+  background: #ff5a00; transition: width .35s;
+}
+.speed-underline:hover::after { width: 100%; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1 !important; transform: none !important; transition: none !important; }
+  .animate-marquee, .animate-drop { animation: none !important; }
+}
