@@ -84,6 +84,12 @@ export function AdminSidebar({ user }: { user: { nom: string; role: string } }) 
         <div className="border-t border-edge p-4">
           <div className="font-cond text-sm text-white">{user.nom}</div>
           <div className="font-cond text-[10px] tracking-[2px] uppercase text-orange mb-3">{user.role}</div>
+          <Link
+            href="/"
+            className="flex items-center justify-center gap-2 w-full font-cond text-xs tracking-wide uppercase text-black bg-orange rounded-sm py-2 mb-2 hover:bg-orange-clair transition-colors"
+          >
+            <span>↗</span> Voir le site
+          </Link>
           <form action={logoutAction}>
             <button className="w-full font-cond text-xs tracking-wide uppercase text-gris border border-edge rounded-sm py-2 hover:border-orange hover:text-orange transition-colors">
               Déconnexion

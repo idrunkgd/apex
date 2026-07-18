@@ -64,7 +64,7 @@ export default async function HomePage() {
 
         <div className="max-w-5xl">
           <Reveal className="eyebrow">Véhicules d'exception · Luxembourg</Reveal>
-          <h1 className="font-display text-[clamp(64px,13vw,190px)] leading-[.82] tracking-[2px] mt-4">
+          <h1 className="font-display text-[clamp(64px,13vw,190px)] leading-[.92] tracking-[2px] mt-7 pt-1">
             LIBÉREZ<br />
             LA <span className="text-orange" style={{ textShadow: "0 0 40px rgba(255,90,0,.55)" }}>MACHINE.</span>
           </h1>
@@ -248,7 +248,7 @@ export default async function HomePage() {
         <div className="absolute left-1/2 -bottom-1/3 -translate-x-1/2 w-[90vw] h-[70vh] bg-[radial-gradient(closest-side,rgba(255,90,0,.2),transparent_70%)] blur-2xl" />
         <Reveal className="eyebrow justify-center">Prêt à prendre le volant ?</Reveal>
         <Reveal>
-          <h2 className="font-display text-[clamp(52px,11vw,150px)] leading-[.85] mt-4">
+          <h2 className="font-display text-[clamp(52px,11vw,150px)] leading-[.92] mt-4">
             VOTRE PROCHAIN<br />
             DÉPART <span className="text-orange" style={{ textShadow: "0 0 50px rgba(255,90,0,.55)" }}>COMMENCE ICI.</span>
           </h2>

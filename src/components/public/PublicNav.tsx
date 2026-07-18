@@ -10,7 +10,7 @@ const LINKS = [
   { href: "/contact", label: "Contact" },
 ];
 
-export function PublicNav() {
+export function PublicNav({ isAuthed = false }: { isAuthed?: boolean }) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -42,7 +42,12 @@ export function PublicNav() {
         ))}
       </nav>
 
-      <div className="hidden md:block">
+      <div className="hidden md:flex items-center gap-5">
+        {isAuthed && (
+          <Link href="/admin" className="font-cond text-[13px] tracking-[2px] uppercase text-gris-clair hover:text-orange transition-colors">
+            Cockpit
+          </Link>
+        )}
         <Link
           href="/location"
           className="font-cond text-xs tracking-[2px] uppercase border border-orange text-white px-5 py-2.5 rounded-sm hover:bg-orange hover:text-black hover:shadow-glow transition-all"
@@ -72,6 +77,11 @@ export function PublicNav() {
           <Link href="/location" onClick={() => setOpen(false)} className="font-cond uppercase tracking-[2px] text-orange">
             Réserver
           </Link>
+          {isAuthed && (
+            <Link href="/admin" onClick={() => setOpen(false)} className="font-cond uppercase tracking-[2px] text-gris-clair">
+              Cockpit
+            </Link>
+          )}
         </div>
       )}
     </header>
