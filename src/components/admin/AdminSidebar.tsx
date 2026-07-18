@@ -3,6 +3,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { logoutAction } from "@/lib/actions/auth";
+import { Wordmark } from "@/components/Wordmark";
 
 const NAV = [
   { group: "Pilotage", items: [{ href: "/admin", label: "Dashboard", icon: "◈" }] },
@@ -28,7 +29,10 @@ const NAV = [
   },
   {
     group: "Administration",
-    items: [{ href: "/admin/parametres", label: "Paramètres", icon: "⚙" }],
+    items: [
+      { href: "/admin/utilisateurs", label: "Utilisateurs", icon: "☺" },
+      { href: "/admin/parametres", label: "Paramètres", icon: "⚙" },
+    ],
   },
 ];
 
@@ -50,9 +54,10 @@ export function AdminSidebar({ user }: { user: { nom: string; role: string } }) 
           open ? "translate-x-0" : "-translate-x-full lg:translate-x-0"
         }`}
       >
-        <Link href="/admin" className="font-display text-3xl tracking-[5px] flex items-center gap-2.5 px-6 py-6 border-b border-edge">
-          <span className="w-2 h-2 bg-orange rounded-full shadow-glow" />APEX
-          <span className="font-cond text-[9px] tracking-[2px] text-gris ml-auto mt-2">COCKPIT</span>
+        <Link href="/admin" className="flex items-center gap-2.5 px-6 py-6 border-b border-edge">
+          <span className="w-2 h-2 bg-orange rounded-full shadow-glow" />
+          <Wordmark size="md" />
+          <span className="font-cond text-[9px] tracking-[2px] text-gris ml-auto self-start mt-1">COCKPIT</span>
         </Link>
 
         <nav className="flex-1 overflow-y-auto py-4 px-3">

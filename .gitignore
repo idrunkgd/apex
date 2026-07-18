@@ -10,7 +10,3 @@ next-env.d.ts
 # Uploads (dev local)
 /public/uploads/*
 !/public/uploads/.gitkeep
-
-# Transferts internes
-_archive
-imports

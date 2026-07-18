@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { Wordmark } from "@/components/Wordmark";
 
 const LINKS = [
   { href: "/vente", label: "Vente" },
@@ -28,9 +29,9 @@ export function PublicNav() {
           : "py-5 bg-gradient-to-b from-noir/80 to-transparent"
       }`}
     >
-      <Link href="/" className="font-display text-3xl tracking-[6px] flex items-center gap-2.5">
+      <Link href="/" className="flex items-center gap-2.5">
         <span className="w-2.5 h-2.5 bg-orange rounded-full shadow-glow" />
-        APEX
+        <Wordmark size="md" />
       </Link>
 
       <nav className="hidden md:flex gap-8 font-cond text-[13px] tracking-[2px] uppercase text-gris-clair">

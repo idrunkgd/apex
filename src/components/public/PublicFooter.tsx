@@ -1,11 +1,12 @@
 import Link from "next/link";
+import { Wordmark } from "@/components/Wordmark";
 
 export function PublicFooter() {
   return (
     <footer className="bg-noir border-t border-edge px-5 md:px-16 py-14 relative z-10">
       <div className="flex flex-wrap justify-between gap-10">
         <div className="max-w-xs">
-          <div className="font-display text-2xl tracking-[5px]">APEX</div>
+          <Wordmark size="lg" />
           <p className="mt-3 text-gris font-light text-sm leading-relaxed">
             Véhicules d'exception — achat, revente &amp; location. Luxembourg.
           </p>
@@ -29,7 +30,7 @@ export function PublicFooter() {
         </div>
       </div>
       <div className="mt-12 pt-6 border-t border-edge text-gris text-xs flex justify-between flex-wrap gap-2">
-        <span>© {new Date().getFullYear()} APEX — Luxembourg. TVA LU.</span>
+        <span>© {new Date().getFullYear()} Zenith Luxury Experience — Luxembourg. TVA LU.</span>
         <span>Conçu pour être piloté.</span>
       </div>
     </footer>

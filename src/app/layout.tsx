@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "APEX — Conduire l'exception",
+  title: "Zenith Luxury Experience — Conduire l'exception",
   description:
     "Achat, revente et location de supercars et de voitures de prestige au Luxembourg. La performance n'a pas de limite.",
 };

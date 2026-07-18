@@ -1,7 +1,7 @@
 // Coordonnées de la société (paramétrables — à terme dans les Réglages).
 export const COMPANY = {
-  nom: "APEX",
-  baseline: "Véhicules d'exception",
+  nom: "Zenith Luxury Experience",
+  baseline: "Véhicules d'exception · Luxembourg",
   adresse: "1 Boulevard Royal",
   ville: "L-2449 Luxembourg",
   pays: "Luxembourg",

@@ -8,6 +8,8 @@ export const ROLES = {
 } as const;
 export type Role = keyof typeof ROLES;
 
+export const ROLE_OPTIONS = Object.entries(ROLES).map(([value, label]) => ({ value, label }));
+
 export const VEHICLE_STATUS = {
   EN_ACQUISITION: "En acquisition",
   EN_PREPARATION: "En préparation",

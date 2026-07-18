@@ -10,7 +10,7 @@ export default function EntreprisePage() {
         LA PASSION<br />COMME <span className="text-orange">MOTEUR.</span>
       </h1>
       <p className="text-gris-clair font-light text-lg max-w-2xl mt-8 leading-relaxed">
-        APEX réunit deux métiers autour d'une même obsession : l'excellence automobile. Nous sélectionnons,
+        Zenith Luxury Experience réunit deux métiers autour d'une même obsession : l'excellence automobile. Nous sélectionnons,
         préparons et proposons des véhicules d'exception à l'achat comme à la location. Chaque voiture est
         choisie pour son caractère, vérifiée dans le détail et présentée comme elle le mérite.
       </p>
